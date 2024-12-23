@@ -15,7 +15,7 @@ class IconvCharset
   def self.safe_iconv(to, from, str)
     return str.encode(to, from, :invalid => :replace, :undef => :replace, :replace => '?') if ''.respond_to? :encode
     iconv = Iconv.new(to, from)
-    out = ""
+    out = String.new
     begin
       out << iconv.iconv(str)
     rescue Iconv::IllegalSequence => e

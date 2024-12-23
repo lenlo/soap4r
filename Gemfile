@@ -10,7 +10,7 @@ else
   if RUBY_VERSION.to_f <= 2.2
     gem 'nokogiri',     '~> 1.6.6'    # nokogiriparser ; Uses libxml2, libxslt, and zlib
   else
-    gem 'nokogiri',   '~> 1.8.2'
+    gem 'nokogiri',   '~> 1.17.2'
   end
   gem 'oga'                         # ogaparser      ; Pure-Ruby Alternative ; Ruby 1.9 and above only.
   gem 'logger-application', :require=>'logger-application'
@@ -56,7 +56,8 @@ group :test do
   # gem 'ruby-termios'               # Unroller requires this . . .
   # gem 'unroller', :git=>'https://github.com/jayjlawrence/unroller.git', :branch=>'master'
 
-  gem 'pry-byebug', '< 3.6' if RUBY_VERSION.to_f >= 2.0
-  gem 'byebug', '< 10' if RUBY_VERSION.to_f >= 2.0
+  gem 'pry-byebug' if RUBY_VERSION.to_f >= 2.0
+  gem 'byebug' if RUBY_VERSION.to_f >= 2.0
   gem 'soap4r-ng', :path=>'.'  # Make our development copy (this directory) available as a Gem via Bundler. Useful for running tests.
+  gem 'webrick' if RUBY_VERSION.to_f >= 2.0
 end

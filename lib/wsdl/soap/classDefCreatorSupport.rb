@@ -158,7 +158,7 @@ private
 
   def dump_inputparam(input)
     message = input.find_message
-    params = ""
+    params = String.new
     message.parts.each do |part|
       params << ", " unless params.empty?
       params << safevarname(part.name)

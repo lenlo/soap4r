@@ -480,7 +480,7 @@ private
   end
 
   def _to_s
-    str = ''
+    str = String.new
     str << @sign if @sign
     str << 'P'
     l = ''
@@ -568,7 +568,7 @@ module XSDDateTimeImpl
     if diffmin.zero?
       'Z'
     else
-      ((diffmin < 0) ? '-' : '+') << format('%02d:%02d',
+      ((diffmin < 0) ? '-' : '+') + format('%02d:%02d',
     	(diffmin.abs / 60.0).to_i, (diffmin.abs % 60.0).to_i)
     end
   end

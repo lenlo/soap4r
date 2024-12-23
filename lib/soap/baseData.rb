@@ -542,7 +542,7 @@ public
   end
 
   def to_s
-    str = ''
+    str = String.new
     self.each do |key, data|
       str << "#{key}: #{data}\n"
     end
