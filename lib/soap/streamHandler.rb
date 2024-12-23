@@ -231,7 +231,7 @@ private
     extheader['SOAPAction'] = "\"#{ conn_data.soapaction }\""
     extheader['Accept-Encoding'] = 'gzip' if send_accept_encoding_gzip?
     send_string = conn_data.send_string
-    @wiredump_dev << "Wire dump:\n\n" if @wiredump_dev
+    @wiredump_dev += "Wire dump:\n\n" if @wiredump_dev
     begin
       retry_count = 0
       while true
@@ -251,7 +251,7 @@ private
       @client.reset(url)
       raise
     end
-    @wiredump_dev << "\n\n" if @wiredump_dev
+    @wiredump_dev += "\n\n" if @wiredump_dev
     receive_string = res.content
     if @wiredump_file_base
       filename = @wiredump_file_base + '_response.xml'

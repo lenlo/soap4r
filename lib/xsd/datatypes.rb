@@ -480,7 +480,7 @@ private
   end
 
   def _to_s
-    str = ''
+    str = String.new
     str << @sign if @sign
     str << 'P'
     l = ''
@@ -568,7 +568,7 @@ module XSDDateTimeImpl
     if diffmin.zero?
       'Z'
     else
-      ((diffmin < 0) ? '-' : '+') << format('%02d:%02d',
+      ((diffmin < 0) ? '-' : '+') + format('%02d:%02d',
     	(diffmin.abs / 60.0).to_i, (diffmin.abs % 60.0).to_i)
     end
   end
@@ -650,11 +650,11 @@ private
     s = format('%.4d-%02d-%02dT%02d:%02d:%02d', year, @data.mon, @data.mday, @data.hour, @data.min, @data.sec)
     if @data.sec_fraction.nonzero?
       if @secfrac
-        s << ".#{ @secfrac }"
+        s += ".#{ @secfrac }"
       elsif (RUBY_VERSION.to_f >= 1.9)
-        s << sprintf("%.16f",@data.sec_fraction.to_f).sub(/^0/, '').sub(/0*$/, '')
+        s += sprintf("%.16f",@data.sec_fraction.to_f).sub(/^0/, '').sub(/0*$/, '')
       else
-        s << sprintf("%.16f",(@data.sec_fraction * DayInSec).to_f).sub(/^0/, '').sub(/0*$/, '')
+        s += sprintf("%.16f",(@data.sec_fraction * DayInSec).to_f).sub(/^0/, '').sub(/0*$/, '')
       end
     end
     add_tz(s)
@@ -701,9 +701,9 @@ private
     s = format('%02d:%02d:%02d', @data.hour, @data.min, @data.sec)
     if @data.sec_fraction.nonzero?
       if @secfrac
-  	s << ".#{ @secfrac }"
+  	s += ".#{ @secfrac }"
       else
-	s << sprintf("%.16f",
+	s += sprintf("%.16f",
           (@data.sec_fraction * DayInSec).to_f).sub(/^0/, '').sub(/0*$/, '')
       end
     end

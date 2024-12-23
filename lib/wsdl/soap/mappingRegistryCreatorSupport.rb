@@ -342,7 +342,7 @@ __EOD__
     occurrence = [0, nil]
     if child_element and child_element.name
       if child_element.map_as_array?
-        type << '[]' if type
+        type += '[]' if type
         occurrence = [child_element.minoccurs, child_element.maxoccurs]
       end
       child_element_name = child_element.name
