@@ -51,7 +51,7 @@ public
   end
 
   def generate(obj, io = nil)
-    @buf = io || ''
+    @buf = io || String.new
     @indent = ''
     @encode_char_regexp = get_encode_char_regexp()
 
